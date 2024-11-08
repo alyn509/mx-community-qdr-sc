@@ -30,11 +30,11 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
                         .calculate_promo_percentage(purchase_pos.purchase_amount.to_u64().unwrap());
                     purchase_pos.has_reached_promo_min = true;
                 } else {
+                    // since we are working with u64 and PERCENTAGE_DIVISOR we have to multiply the payment_amount by it here
+                    // so that later we make the division
                     purchase_pos.promo_reward_percentage = self.calculate_promo_percentage(
                         previous_promo_purchase
                             + payment_amount.to_u64().unwrap() * PERCENTAGE_DIVISOR,
-                        // since we are working with u64 and PERCENTAGE_DIVISOR we have to multiply the payment_amount by it here
-                        // so that later we make the division
                     )
                 }
             }

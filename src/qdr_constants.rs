@@ -10,7 +10,7 @@ pub const QDR_MAG_REWARD: u64 = 50000;
 pub const MA_FIX_REWARD: u64 = 20000;
 pub const TT_FIX_REWARD: u64 = 20000;
 pub const MB_FIX_REWARD: u64 = 2000;
-pub const PROMO_TOTAL_REWARD: u64 = 7500;
+// pub const PROMO_TOTAL_REWARD: u64 = 7500;   // dead code
 pub const PROMO_BASE_PERCENTAGE: u64 = 15;
 
 pub const PERCENTAGE_DIVISOR: u64 = 1000000;
