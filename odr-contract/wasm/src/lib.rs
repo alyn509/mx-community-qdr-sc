@@ -5,10 +5,9 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Upgrade:                              1
-// Endpoints:                            0
+// Endpoints:                            7
 // Async Callback (empty):               1
-// Total number of exported functions:   3
+// Total number of exported functions:   9
 
 #![no_std]
 
@@ -19,7 +18,13 @@ multiversx_sc_wasm_adapter::endpoints! {
     odr_contract
     (
         init => init
-        upgrade => upgrade
+        purchase => purchase
+        claimPromoRewards => claim_promo_rewards
+        calculatePromoRewards => calculate_promo_rewards
+        getPurchasedAddresses => purchased_addresses
+        getPurchasePosition => purchase_position
+        getApy => apy
+        getTotalPromoPurchased => total_promo_purchased
     )
 }
 
