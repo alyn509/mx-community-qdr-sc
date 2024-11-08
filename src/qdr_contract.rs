@@ -17,6 +17,6 @@ pub trait QdrContract:
     #[init]
     fn init(&self, apy: u64) {
         self.apy().set(apy);
-        self.total_promo_purchased().set(0u64);
+        self.total_promo_purchased().set(BigUint::zero());
     }
 }

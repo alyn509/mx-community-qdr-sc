@@ -18,11 +18,11 @@ pub trait QdrViews {
         let purchase_pos = self.purchase_position(addr).get();
         let total_promo_purchased = self.total_promo_purchased().get();
         let promo_percentage = purchase_pos.promo_reward_percentage;
-        let promo_reward = self.get_percentage(total_promo_purchased * promo_percentage);
-        BigUint::from(promo_reward)
+        // here where we calculate the reward straigth up we need to remember to get rid of the PERCENTAGE_DIVISOR we inserted before in order to get rid of floats
+        self.get_percentage(total_promo_purchased * promo_percentage)
     }
 
-    fn get_percentage(&self, amount: u64) -> u64 {
+    fn get_percentage(&self, amount: BigUint) -> BigUint {
         amount / PERCENTAGE_DIVISOR
     }
 
@@ -43,5 +43,5 @@ pub trait QdrViews {
 
     #[view(getTotalPromoPurchased)]
     #[storage_mapper("totalPromoPurchased")]
-    fn total_promo_purchased(&self) -> SingleValueMapper<u64>;
+    fn total_promo_purchased(&self) -> SingleValueMapper<BigUint>;
 }

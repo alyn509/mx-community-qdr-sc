@@ -19,7 +19,7 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
 
     fn handle_promo_purchase(&self, caller: &ManagedAddress, payment_amount: &BigUint) {
         let mut total_promo_purchased = self.total_promo_purchased().get();
-        let new_promo_purchase = total_promo_purchased + payment_amount.to_u64().unwrap();
+        let new_promo_purchase = total_promo_purchased + payment_amount;
         self.purchase_position(caller).update(|purchase_pos| {
             purchase_pos.purchase_amount += payment_amount;
             if !purchase_pos.has_reached_promo_min {
@@ -31,7 +31,10 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
                     purchase_pos.has_reached_promo_min = true;
                 } else {
                     purchase_pos.promo_reward_percentage = self.calculate_promo_percentage(
-                        previous_promo_purchase + payment_amount.to_u64().unwrap(),
+                        previous_promo_purchase
+                            + payment_amount.to_u64().unwrap() * PERCENTAGE_DIVISOR,
+                        // since we are working with u64 and PERCENTAGE_DIVISOR we have to multiply the payment_amount by it here
+                        // so that later we make the division
                     )
                 }
             }
@@ -71,7 +74,7 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
         percentage: u64,
     ) -> BigUint {
         let managed_address = ManagedAddress::new_from_bytes(&address_bytes);
-        let reward = payment_amount * percentage;
+        let reward = self.get_percentage(payment_amount * percentage);
         self.send().direct_egld(&managed_address, &reward);
         reward
     }
@@ -82,10 +85,11 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
         let mut remaining_reward = total_promo_reward;
         for addr in self.purchased_addresses().iter() {
             let purchase_pos = self.purchase_position(&addr).get();
+            // here where we calculate the reward straigth up we need to remember to get rid of the PERCENTAGE_DIVISOR we inserted before in order to get rid of floats
             let user_reward =
-                self.get_percentage(total_promo_purchased * purchase_pos.promo_reward_percentage);
+                self.get_percentage(&total_promo_purchased * purchase_pos.promo_reward_percentage);
             if user_reward > 0 && remaining_reward >= user_reward {
-                self.send().direct_egld(&addr, &BigUint::from(user_reward));
+                self.send().direct_egld(&addr, &user_reward);
                 remaining_reward -= user_reward;
             }
         }
