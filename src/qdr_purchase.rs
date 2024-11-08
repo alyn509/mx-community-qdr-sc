@@ -1,7 +1,9 @@
 use crate::qdr_constants::*;
 use multiversx_sc::imports::*;
 
-/// Contains all storage mapper that the contract works with.
+// the purchase logic of the contract
+// since the whole logic of purchase gets hard to follow we opted to isolate it from the rest of the contract
+
 #[multiversx_sc::module]
 pub trait QdrPurchase: crate::qdr_views::QdrViews {
     #[payable("*")]

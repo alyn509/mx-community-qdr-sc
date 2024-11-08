@@ -10,7 +10,7 @@ pub struct PurchasePosition<M: ManagedTypeApi> {
     pub has_reached_promo_min: bool,
 }
 
-/// Contains all storage mapper that the contract works with.
+/// Contains all views and storage mapper that the contract works with
 #[multiversx_sc::module]
 pub trait QdrViews {
     #[view(calculatePromoRewards)]

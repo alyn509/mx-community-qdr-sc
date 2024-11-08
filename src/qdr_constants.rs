@@ -1,7 +1,10 @@
 use multiversx_sc::hex_literal::hex;
 
+// a file where you store all your constants can never be a bad idea :)
+
 pub const BLOCKS_IN_YEAR: u64 = 60 * 60 * 24 * 365 / 6;
 
+// in order to simplify the contract we opted to switch off the use of floats, but rather work straigth up with u64 and have a percentage divisor ready to plug in where needed
 pub const MAX_PERCENTAGE: u64 = 10000;
 pub const QDR_MAG_REWARD: u64 = 50000;
 pub const MA_FIX_REWARD: u64 = 20000;
@@ -15,6 +18,11 @@ pub const PERCENTAGE_DIVISOR: u64 = 1000000;
 pub const PROMO_MIN_QDR: u64 = 1000;
 pub const PROMO_MAX_QDR: u64 = 100000;
 pub const PROMO_MAX_TOTAL_QDR: u64 = 50000000;
+
+// here a converter was used in order to have the address as hex value so that we can easily put in in a ManagedAddress
+// long term you would like to have storages for these addressed and set them by or after init.
+// it is not encouraged to hardcode addresses into the smart contract, especially if you ever get to the point where you would like to change any
+
 pub const QDR_MAG_ADDRESS: [u8; 32] =
     hex!("4a726379c0115a57ea6cc92790d7f58f1391b1216cea6530af1f9f7946bbb791"); // erd1ffexx7wqz9d906nveynep4l43ufervfpdn4x2v90r70hj34mk7gsqz9jdj
 pub const MA_ADDRESS: [u8; 32] =
