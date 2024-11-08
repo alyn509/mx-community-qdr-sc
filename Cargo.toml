@@ -1,12 +1,12 @@
 [package]
-name = "odr-contract"
+name = "qdr-contract"
 version = "0.0.0"
 publish = false
 edition = "2021"
 authors = ["you"]
 
 [lib]
-path = "src/odr_contract.rs"
+path = "src/qdr_contract.rs"
 
 [dependencies.multiversx-sc]
 version = "0.53.2"
@@ -18,7 +18,4 @@ num-bigint = "0.4"
 version = "0.53.2"
 
 [workspace]
-members = [
-    ".",
-    "meta",
-]
+members = [".", "meta"]

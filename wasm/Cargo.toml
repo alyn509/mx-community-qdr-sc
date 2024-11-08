@@ -5,7 +5,7 @@
 # ##########################################
 
 [package]
-name = "odr-contract-wasm"
+name = "qdr-contract-wasm"
 version = "0.0.0"
 edition = "2021"
 publish = false
@@ -24,7 +24,7 @@ overflow-checks = false
 [profile.dev]
 panic = "abort"
 
-[dependencies.odr-contract]
+[dependencies.qdr-contract]
 path = ".."
 
 [dependencies.multiversx-sc-wasm-adapter]

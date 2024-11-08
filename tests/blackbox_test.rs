@@ -1,9 +1,9 @@
 use multiversx_sc_scenario::imports::*;
 
-use odr_contract::*;
+use qdr_contract::*;
 
 const OWNER_ADDRESS: TestAddress = TestAddress::new("owner");
-const CODE_PATH: MxscPath = MxscPath::new("output/odr-contract.mxsc.json");
+const CODE_PATH: MxscPath = MxscPath::new("output/qdr-contract.mxsc.json");
 
 fn world() -> ScenarioWorld {
     let mut blockchain = ScenarioWorld::new();

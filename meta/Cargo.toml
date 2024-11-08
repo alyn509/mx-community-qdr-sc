@@ -1,10 +1,10 @@
 [package]
-name = "odr-contract-meta"
+name = "qdr-contract-meta"
 version = "0.0.0"
 edition = "2021"
 publish = false
 
-[dependencies.odr-contract]
+[dependencies.qdr-contract]
 path = ".."
 
 [dependencies.multiversx-sc-meta-lib]

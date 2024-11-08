@@ -15,16 +15,16 @@ multiversx_sc_wasm_adapter::allocator!();
 multiversx_sc_wasm_adapter::panic_handler!();
 
 multiversx_sc_wasm_adapter::endpoints! {
-    odr_contract
+    qdr_contract
     (
         init => init
-        purchase => purchase
-        claimPromoRewards => claim_promo_rewards
         calculatePromoRewards => calculate_promo_rewards
         getPurchasedAddresses => purchased_addresses
         getPurchasePosition => purchase_position
         getApy => apy
         getTotalPromoPurchased => total_promo_purchased
+        purchase => purchase
+        claimPromoRewards => claim_promo_rewards
     )
 }
 
