@@ -37,23 +37,47 @@ class Context:
         hash = self.proxy.send_transaction(transaction).hex()
         self.sc_address = find_events_by_identifier(hash, "SCDeploy")[0].address.to_bech32
         print(f'Deploy successful. tx_hash: {hash}')
+        
+        self.set_address("setQdrMagAddress", self.qdr_mag_account.address)
+        self.set_address("setMaAddress", self.ma_account.address)
+        self.set_address("setTtAddress", self.tt_account.address)
+        self.set_address("setMbAddress", self.mb_account.address)
+        self.set_address("setPromoAddress", self.promo_account.address)
 
 
-    def call(self, caller: Address, endpoint: str, transfer_amount: int):
+    def call(self, caller: Account, endpoint: str, transfer_amount: int):
         if not hasattr(self, 'sc_address'):
             print(f'{endpoint} call failed: No SC deployed yet')
             return
         
-        self.deployer_account.nonce = self.proxy.get_account(self.deployer_account.address).nonce
-        transaction = self.factorySC.create_transaction_for_execute(caller,
+        caller.nonce = self.proxy.get_account(caller.address).nonce
+        transaction = self.factorySC.create_transaction_for_execute(caller.address,
                                                                 self.sc_address, 
                                                                 endpoint,
                                                                 config.GAS_DEPLOY,
                                                                 [],
                                                                 transfer_amount)
-        transaction.nonce = self.deployer_account.nonce
-        transaction.signature = self.deployer_account.sign_transaction(transaction)
+        transaction.nonce = caller.nonce
+        transaction.signature = caller.sign_transaction(transaction)
         hash = self.proxy.send_transaction(transaction).hex()
         
         print(f'{endpoint} call successful. tx_hash: {hash}')
+
+    def set_address(self, endpoint: str, address: Address):
+        if not hasattr(self, 'sc_address'):
+            print(f'{endpoint} call failed: No SC deployed yet')
+            return
+        
+        self.deployer_account.nonce = self.proxy.get_account(self.deployer_account.address).nonce
+        transaction = self.factorySC.create_transaction_for_execute(self.deployer_account,
+                                                                self.sc_address, 
+                                                                endpoint,
+                                                                config.GAS_DEPLOY,
+                                                                [address],
+                                                                0)
+        transaction.nonce = self.deployer_account.nonce
+        transaction.signature = self.deployer_account.sign_transaction(transaction)
+        self.proxy.send_transaction(transaction)
+        
+        print(f'address setup successful')
 
