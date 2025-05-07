@@ -1,4 +1,6 @@
 import sys
+sys.path.append("..")
+
 
 from argparse import ArgumentParser
 from logging import config

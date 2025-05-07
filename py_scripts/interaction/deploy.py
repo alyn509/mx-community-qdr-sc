@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 from py_scripts import config
 from py_scripts.context import Context
 

@@ -20,4 +20,7 @@ pub trait QdrContract:
         self.apy().set(apy);
         self.total_promo_purchased().set(BigUint::zero());
     }
+
+    #[upgrade]
+    fn upgrade(&self) {}
 }
