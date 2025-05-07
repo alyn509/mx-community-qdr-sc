@@ -69,7 +69,7 @@ class Context:
                                                                     True)
         transaction.nonce = self.deployer_account.nonce
         transaction.signature = self.deployer_account.sign_transaction(transaction)
-        self.proxy.send_transaction(transaction)
+        hash = self.proxy.send_transaction(transaction).hex()
 
         print(f'Upgrade successful. tx_hash: {hash} sc_address: {self.sc_address}')
         
