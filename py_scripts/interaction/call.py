@@ -35,7 +35,7 @@ def main(cli_args: List[str]):
             print("invalid account")
             return
         
-    context.deploy(config.INIT_APY)
+    context.deploy_or_load_sc_address(config.INIT_APY)
     context.call(caller, args.endpoint, args.transfer_amount)
     
 

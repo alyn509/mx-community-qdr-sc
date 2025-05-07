@@ -36,8 +36,25 @@ class Context:
         transaction.signature = self.deployer_account.sign_transaction(transaction)
         hash = self.proxy.send_transaction(transaction).hex()
         self.sc_address = find_events_by_identifier(hash, "SCDeploy")[0].address.to_bech32
-        print(f'Deploy successful. tx_hash: {hash}')
+
+        with open("sc_address.txt", "W") as f:
+            f.write(self.sc_address)
+
+        print(f'Deploy successful. tx_hash: {hash} sc_address: {self.sc_address}')
         
+        self.address_setup()
+    
+
+    def deploy_or_set_sc_address(self, init_apy: int):
+        with open("demofile.txt") as f:
+            self.sc_address = f.read()
+        if not self.sc_address:
+            self.deploy(init_apy)
+
+    def address_setup(self):
+        if not hasattr(self, 'sc_address'):
+            print(f'setup failed: No SC deployed yet')
+            return
         self.set_address("setQdrMagAddress", self.qdr_mag_account.address)
         self.set_address("setMaAddress", self.ma_account.address)
         self.set_address("setTtAddress", self.tt_account.address)
