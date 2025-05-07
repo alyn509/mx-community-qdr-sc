@@ -11,3 +11,23 @@
 # The mxpy output
 **/output/**
 **/*.interaction.json
+
+**/wallets/*
+**/venv*
+**/.idea
+**/.vscode
+**/logs/*
+**/tools/notebooks/env.py
+**/tools/notebooks/*.log
+**/.venv
+**/__pycache__
+**/deploy/*/tokens.json
+**/deploy/*/deployed_*.json
+**/deploy/*/upgrader_outputs
+**/dump
+**/abis
+**/wasm
+*downloads
+*state_dump
+*states
+docker/*

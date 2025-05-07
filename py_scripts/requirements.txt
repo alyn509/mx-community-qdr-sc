@@ -1,0 +1,8 @@
+ipykernel
+ipytest
+toml
+debugpy
+wget
+pytest-yaml
+multiversx-sdk-cli
+multiversx-sdk

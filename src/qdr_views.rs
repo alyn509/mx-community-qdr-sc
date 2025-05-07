@@ -44,4 +44,19 @@ pub trait QdrViews {
     #[view(getTotalPromoPurchased)]
     #[storage_mapper("totalPromoPurchased")]
     fn total_promo_purchased(&self) -> SingleValueMapper<BigUint>;
+
+    #[storage_mapper("qdrMagAddress")]
+    fn qdr_mag_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("maAddress")]
+    fn ma_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("ttAddress")]
+    fn tt_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("mbAddress")]
+    fn mb_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("promoAddress")]
+    fn promo_address(&self) -> SingleValueMapper<ManagedAddress>;
 }

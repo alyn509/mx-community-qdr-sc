@@ -5,9 +5,9 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Endpoints:                            7
+// Endpoints:                           12
 // Async Callback (empty):               1
-// Total number of exported functions:   9
+// Total number of exported functions:  14
 
 #![no_std]
 
@@ -25,6 +25,11 @@ multiversx_sc_wasm_adapter::endpoints! {
         getTotalPromoPurchased => total_promo_purchased
         purchase => purchase
         claimPromoRewards => claim_promo_rewards
+        setQdrMagAddress => set_qdr_mag_address
+        setMaAddress => set_ma_address
+        setTtAddress => set_tt_address
+        setMbAddress => set_mb_address
+        setPromoAddress => set_promo_address
     )
 }
 
