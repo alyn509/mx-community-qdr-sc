@@ -9,13 +9,16 @@ authors = ["you"]
 path = "src/qdr_contract.rs"
 
 [dependencies.multiversx-sc]
-version = "0.53.2"
+version = "0.54.4"
 
 [dev-dependencies]
 num-bigint = "0.4"
 
 [dev-dependencies.multiversx-sc-scenario]
-version = "0.53.2"
+version = "0.54.4"
 
 [workspace]
-members = [".", "meta"]
+members = [
+    ".",
+    "meta",
+]

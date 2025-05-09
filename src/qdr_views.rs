@@ -3,7 +3,8 @@ use multiversx_sc::imports::*;
 use crate::qdr_constants::PERCENTAGE_DIVISOR;
 multiversx_sc::derive_imports!();
 
-#[derive(TypeAbi, TopEncode, TopDecode, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, PartialEq, Default, Debug)]
 pub struct PurchasePosition<M: ManagedTypeApi> {
     pub purchase_amount: BigUint<M>,
     pub promo_reward_percentage: u64,

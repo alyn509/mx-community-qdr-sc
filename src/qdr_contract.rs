@@ -4,6 +4,7 @@ multiversx_sc::imports!();
 
 pub mod qdr_claim;
 pub mod qdr_constants;
+pub mod qdr_contract_proxy;
 pub mod qdr_purchase;
 pub mod qdr_setup;
 pub mod qdr_views;

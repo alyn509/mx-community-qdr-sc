@@ -1,22 +1,15 @@
-use multiversx_sc_scenario::imports::*;
-
-use qdr_contract::*;
-
-const OWNER_ADDRESS: TestAddress = TestAddress::new("owner");
-const CODE_PATH: MxscPath = MxscPath::new("output/qdr-contract.mxsc.json");
-
-fn world() -> ScenarioWorld {
-    let mut blockchain = ScenarioWorld::new();
-
-    blockchain.register_contract(CODE_PATH, ContractBuilder);
-    blockchain
-}
+mod contract_setup;
+use contract_setup::*;
 
 #[test]
-fn adder_blackbox() {
-    let mut world = world();
+fn test_purchase() {
+    let mut state = QdrScTestState::new();
+    state.deploy();
+    state.purchase(BUYER1, 100, "");
+    state.purchase(BUYER1, 100, "");
+    state.purchase(BUYER2, 100, "");
+    state.purchase(BUYER3, 100, "");
+    state.purchase(BUYER4, 100, "");
 
-    world.start_trace();
-
-    world.account(OWNER_ADDRESS).nonce(1);
+    state.claim_promo_rewards(BUYER2, "");
 }
