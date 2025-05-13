@@ -33,6 +33,14 @@ def main(cli_args: List[str]):
             caller = context.tt_account
         case "mb":
             caller = context.mb_account
+        case "buyer1":
+            caller = context.buyer1
+        case "buyer2":
+            caller = context.buyer2
+        case "buyer3":
+            caller = context.buyer3
+        case "buyer4":
+            caller = context.buyer4
         case _:
             print("invalid account")
             return

@@ -11,12 +11,20 @@ from multiversx_sdk.abi import Abi
 
 class Context:
     def __init__(self):
+
+    # we need to add all wallets we use here, since we cannot sign transactions with just the address
+
         self.deployer_account = Account.new_from_pem(config.DEFAULT_OWNER)
         self.qdr_mag_account = Account.new_from_pem(config.QDR_MAG)
         self.ma_account = Account.new_from_pem(config.MA)
         self.tt_account = Account.new_from_pem(config.TT)
         self.mb_account = Account.new_from_pem(config.MB)
         self.promo_account = Account.new_from_pem(config.PROMO)
+
+        self.buyer1 = Account.new_from_pem(config.BUYER1)
+        self.buyer2 = Account.new_from_pem(config.BUYER2)
+        self.buyer3 = Account.new_from_pem(config.BUYER3)
+        self.buyer4 = Account.new_from_pem(config.BUYER4)
 
         self.proxy = ProxyNetworkProvider(config.DEFAULT_PROXY)
         self.factoryConfig = TransactionsFactoryConfig(self.proxy.get_network_config().chain_id)

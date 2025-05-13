@@ -31,3 +31,6 @@
 *state_dump
 *states
 docker/*
+
+# the file containing the sc address -  just to avoid giving you a sc address whose owner wallet you don't own
+**/sc_address.json

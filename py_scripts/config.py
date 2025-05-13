@@ -16,6 +16,12 @@ TT = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "tt.pem"
 MB = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "mb.pem" 
 PROMO = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "promo.pem" 
 
+BUYER1 = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "buyer1.pem" 
+BUYER2 = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "buyer2.pem" 
+BUYER3 = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "buyer3.pem" 
+BUYER4 = PY_SCRIPTS_WORKSPACE.absolute() / "wallets" / "buyer4.pem" 
+
+
 # QDR_MAG_ADDRESS = "erd1ffexx7wqz9d906nveynep4l43ufervfpdn4x2v90r70hj34mk7gsqz9jdj"  
 # MA_ADDRESS = "erd1e98jh25urgd46x27q50praswevq4nu042khm3q6wu73gdzqaj0fq89vxq4"  
 # TT_ADDRESS = "erd1sqrlhgchys2ca2u2duteteafrgx44m427rx0aer4kvcxmdwhpy4qe7cn79"
