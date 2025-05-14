@@ -5,19 +5,19 @@
 pub const BLOCKS_IN_YEAR: u64 = 60 * 60 * 24 * 365 / 6;
 
 // in order to simplify the contract we opted to switch off the use of floats, but rather work straigth up with u64 and have a percentage divisor ready to plug in where needed
-pub const MAX_PERCENTAGE: u64 = 10000;
-pub const QDR_MAG_REWARD: u64 = 50000;
-pub const MA_FIX_REWARD: u64 = 20000;
-pub const TT_FIX_REWARD: u64 = 20000;
-pub const MB_FIX_REWARD: u64 = 2000;
+pub const MAX_PERCENTAGE: u64 = 10_000;
+pub const QDR_MAG_REWARD: u64 = 50_000;
+pub const MA_FIX_REWARD: u64 = 20_000;
+pub const TT_FIX_REWARD: u64 = 20_000;
+pub const MB_FIX_REWARD: u64 = 2_000;
 // pub const PROMO_TOTAL_REWARD: u64 = 7500;   // dead code
 pub const PROMO_BASE_PERCENTAGE: u64 = 15;
 
-pub const PERCENTAGE_DIVISOR: u64 = 1000000;
+pub const PERCENTAGE_DIVISOR: u64 = 1_000_000;
 
-pub const PROMO_MIN_QDR: u64 = 1000;
-pub const PROMO_MAX_QDR: u64 = 100000;
-pub const PROMO_MAX_TOTAL_QDR: u64 = 50000000;
+pub const PROMO_MIN_QDR: u64 = 1_000;
+pub const PROMO_MAX_QDR: u64 = 100_000;
+pub const PROMO_MAX_TOTAL_QDR: u64 = 50_000_000;
 
 // here a converter was used in order to have the address as hex value so that we can easily put in in a ManagedAddress
 // long term you would like to have storages for these addressed and set them by or after init.

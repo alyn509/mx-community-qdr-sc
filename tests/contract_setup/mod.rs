@@ -28,7 +28,7 @@ fn world() -> ScenarioWorld {
 }
 
 pub struct QdrScTestState {
-    world: ScenarioWorld,
+    pub world: ScenarioWorld,
 }
 
 impl QdrScTestState {
@@ -43,10 +43,10 @@ impl QdrScTestState {
         world.account(MB_ADDRESS).nonce(1);
         world.account(PROMO_ADDRESS).nonce(1);
 
-        world.account(BUYER1).nonce(1).balance(100_000);
-        world.account(BUYER2).nonce(1).balance(100_000);
-        world.account(BUYER3).nonce(1).balance(100_000);
-        world.account(BUYER4).nonce(1).balance(100_000);
+        world.account(BUYER1).nonce(1).balance(10_000_000);
+        world.account(BUYER2).nonce(1).balance(10_000_000);
+        world.account(BUYER3).nonce(1).balance(10_000_000);
+        world.account(BUYER4).nonce(1).balance(10_000_000);
 
         Self { world }
     }
@@ -144,5 +144,9 @@ impl QdrScTestState {
         } else {
             transaction.run();
         }
+    }
+
+    pub fn check_address_balance(&mut self, address: TestAddress, balance: u64) {
+        self.world.check_account(address).balance(balance);
     }
 }
