@@ -57,7 +57,7 @@ fn test_purchase() {
 
             let position_buyer1 = sc.purchase_position(&buyer1_managed).get();
             assert_eq!(position_buyer1.purchase_amount, managed_biguint!(2200));
-            assert_eq!(position_buyer1.promo_reward_percentage, 15);
+            assert_eq!(position_buyer1.promo_reward_percentage, 30);
             assert_eq!(position_buyer1.has_reached_promo_min, true);
 
             let position_buyer2 = sc.purchase_position(&buyer2_managed).get();
@@ -79,7 +79,7 @@ fn test_purchase() {
     state.check_address_balance(MA_ADDRESS, 4_026);
     state.check_address_balance(TT_ADDRESS, 4_026);
     state.check_address_balance(MB_ADDRESS, 402);
-    state.check_address_balance(PROMO_ADDRESS, 4_020);
+    state.check_address_balance(PROMO_ADDRESS, 4_017);
     state
         .world
         .query()
@@ -99,12 +99,12 @@ fn test_purchase() {
             assert_eq!(total_promo, managed_biguint!(201_300));
         });
 
-    state.check_address_balance(BUYER1, 9_998_903);
+    state.check_address_balance(BUYER1, 9_998_906);
     state.check_address_balance(BUYER4, 9_800_003);
 
     state.claim_promo_rewards(BUYER1, "");
     state.claim_promo_rewards(BUYER4, "");
 
-    state.check_address_balance(BUYER1, 9_998_906); // 2 promo reward claimed
+    state.check_address_balance(BUYER1, 9_998_912); // 6 promo reward claimed
     state.check_address_balance(BUYER4, 9_800_006); // 3 promo reward claimed
 }

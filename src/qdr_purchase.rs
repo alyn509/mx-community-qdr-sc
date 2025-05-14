@@ -23,16 +23,12 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
         self.purchase_position(caller).update(|purchase_pos| {
             purchase_pos.purchase_amount += payment_amount;
             if !purchase_pos.has_reached_promo_min {
-                let previous_promo_purchase = purchase_pos.purchase_amount.to_u64().unwrap();
+                // previous_promo_purchase was redundant because you using the new amount to calculate the new percentage in both cases
                 purchase_pos.purchase_amount += payment_amount.to_u64().unwrap();
+                purchase_pos.promo_reward_percentage =
+                    self.calculate_promo_percentage(purchase_pos.purchase_amount.to_u64().unwrap());
                 if purchase_pos.purchase_amount >= PROMO_MIN_QDR {
-                    purchase_pos.promo_reward_percentage =
-                        self.calculate_promo_percentage(previous_promo_purchase);
                     purchase_pos.has_reached_promo_min = true;
-                } else {
-                    purchase_pos.promo_reward_percentage = self.calculate_promo_percentage(
-                        previous_promo_purchase + payment_amount.to_u64().unwrap(),
-                    )
                 }
             }
         });
