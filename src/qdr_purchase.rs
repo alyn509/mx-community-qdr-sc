@@ -87,7 +87,7 @@ pub trait QdrPurchase: crate::qdr_views::QdrViews {
         let mut remaining_reward = total_promo_reward;
         for addr in self.purchased_addresses().iter() {
             let purchase_pos = self.purchase_position(&addr).get();
-            // here where we calculate the reward straigth up we need to remember to get rid of the PERCENTAGE_DIVISOR we inserted before in order to get rid of floats
+            // here where we calculate the reward straight up we need to remember to get rid of the PERCENTAGE_DIVISOR we inserted with the multiplied reward percentages
             let user_reward =
                 self.get_percentage(&total_promo_purchased * purchase_pos.promo_reward_percentage);
             if user_reward > 0 && remaining_reward >= user_reward {
