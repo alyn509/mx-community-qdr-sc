@@ -75,6 +75,13 @@ python3 interaction/call.py --endpoint purchase --caller buyer1 --transfer-amoun
 All the endpoints and wallets are configured in `call.py`. If you want to add extra elements just change the file and you can simply call them just the same.
 
 Alternativelly, you can make yourself scenarios with multiple transactions and just call all of them at the same time. Check the example scenario.
+Keep in mind that if you plan to follow my model to call the scenarios from py_script
+
+```
+python3 scenarios/base_scenario.py
+
+```
+
 
 ### Testing without the blockchain
 
