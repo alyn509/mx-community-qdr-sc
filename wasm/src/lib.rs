@@ -5,9 +5,10 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Endpoints:                            7
+// Upgrade:                              1
+// Endpoints:                           12
 // Async Callback (empty):               1
-// Total number of exported functions:   9
+// Total number of exported functions:  15
 
 #![no_std]
 
@@ -18,6 +19,7 @@ multiversx_sc_wasm_adapter::endpoints! {
     qdr_contract
     (
         init => init
+        upgrade => upgrade
         calculatePromoRewards => calculate_promo_rewards
         getPurchasedAddresses => purchased_addresses
         getPurchasePosition => purchase_position
@@ -25,6 +27,11 @@ multiversx_sc_wasm_adapter::endpoints! {
         getTotalPromoPurchased => total_promo_purchased
         purchase => purchase
         claimPromoRewards => claim_promo_rewards
+        setQdrMagAddress => set_qdr_mag_address
+        setMaAddress => set_ma_address
+        setTtAddress => set_tt_address
+        setMbAddress => set_mb_address
+        setPromoAddress => set_promo_address
     )
 }
 

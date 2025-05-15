@@ -1,13 +1,38 @@
+use multiversx_sc::derive_imports::*;
 use multiversx_sc::imports::*;
 
 use crate::qdr_constants::PERCENTAGE_DIVISOR;
-multiversx_sc::derive_imports!();
 
-#[derive(TypeAbi, TopEncode, TopDecode, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncodeOrDefault, TopDecodeOrDefault, PartialEq, Default, Debug)]
 pub struct PurchasePosition<M: ManagedTypeApi> {
     pub purchase_amount: BigUint<M>,
     pub promo_reward_percentage: u64,
     pub has_reached_promo_min: bool,
+}
+
+impl<M> codec::EncodeDefault for PurchasePosition<M>
+where
+    M: ManagedTypeApi,
+{
+    fn is_default(&self) -> bool {
+        self.purchase_amount == BigUint::zero()
+            && self.promo_reward_percentage == 0u64
+            && !self.has_reached_promo_min
+    }
+}
+
+impl<M> codec::DecodeDefault for PurchasePosition<M>
+where
+    M: ManagedTypeApi,
+{
+    fn default() -> Self {
+        PurchasePosition {
+            purchase_amount: BigUint::zero(),
+            promo_reward_percentage: 0u64,
+            has_reached_promo_min: false,
+        }
+    }
 }
 
 /// Contains all views and storage mapper that the contract works with
@@ -44,4 +69,19 @@ pub trait QdrViews {
     #[view(getTotalPromoPurchased)]
     #[storage_mapper("totalPromoPurchased")]
     fn total_promo_purchased(&self) -> SingleValueMapper<BigUint>;
+
+    #[storage_mapper("qdrMagAddress")]
+    fn qdr_mag_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("maAddress")]
+    fn ma_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("ttAddress")]
+    fn tt_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("mbAddress")]
+    fn mb_address(&self) -> SingleValueMapper<ManagedAddress>;
+
+    #[storage_mapper("promoAddress")]
+    fn promo_address(&self) -> SingleValueMapper<ManagedAddress>;
 }
