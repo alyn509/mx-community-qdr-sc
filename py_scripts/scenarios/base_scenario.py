@@ -1,24 +1,17 @@
-import os
-from time import sleep
-import subprocess
+import sys
+sys.path.append("..")
 
-# NOTE: we will make a 6 sec. break between every instruction so that we will not get in the situation of transactions overwriting each other
+from py_scripts.scenario_helper import execute_with_args
 
 
-exec(open('interaction/deploy.py').read())
-sleep(6)
-exec(open('interaction/call.py').read(), { 'endpoint': "purchase", 'caller': "buyer1", 'transfer': 100 })
-sleep(6)
-exec(open('interaction/call.py').read(), { 'endpoint': "purchase", 'caller': "buyer1", 'transfer': 1000 })
-sleep(6)
-exec(open('interaction/call.py').read(), { 'endpoint': "purchase", 'caller': "buyer2", 'transfer': 100 })
-sleep(6)
-exec(open('interaction/call.py').read(), { 'endpoint': "purchase", 'caller': "buyer3", 'transfer': 100 })
-sleep(6)
-exec(open('interaction/call.py').read(), { 'endpoint': "purchase", 'caller': "buyer4", 'transfer': 200000 })
-sleep(6)
 
-exec(open('interaction/call.py').read(), { 'endpoint': "claimPromoRewards", 'caller': "buyer1" })
-sleep(6)
-exec(open('interaction/call.py').read(), { 'endpoint': "claimPromoRewards", 'caller': "buyer4" })
-sleep(6)
+execute_with_args("deploy")
+
+execute_with_args("call", ["--endpoint", "purchase", "--caller", "buyer1", "--transfer-amount", "100"])
+execute_with_args("call", ["--endpoint", "purchase", "--caller", "buyer1", "--transfer-amount", "1000"])
+execute_with_args("call", ["--endpoint", "purchase", "--caller", "buyer2", "--transfer-amount", "100"])
+execute_with_args("call", ["--endpoint", "purchase", "--caller", "buyer3", "--transfer-amount", "100"])
+execute_with_args("call", ["--endpoint", "purchase", "--caller", "buyer4", "--transfer-amount", "200000"])
+
+execute_with_args("call", ["--endpoint", "claimPromoRewards", "--caller", "buyer1"])
+execute_with_args("call", ["--endpoint", "claimPromoRewards", "--caller", "buyer4"])
